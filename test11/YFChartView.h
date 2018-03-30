@@ -8,6 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+typedef enum : NSUInteger {
+    pathTypeLine,
+    pathTypeRect,
+    pathTypeCircle,
+} pathType;
 
 @interface YFChartView : UIView
 
@@ -24,7 +29,10 @@
  */
 @property (nonatomic, retain)           NSArray     *numArr;
 
-
+/**
+ 画图的类型
+ */
+@property (nonatomic, assign)       pathType chartType;
 
 /**
  测试方法标注

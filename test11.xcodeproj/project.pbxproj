@@ -12,6 +12,8 @@
 		DA71484F206B9A38002A2616 /* UIFont+AdjustSize.m in Sources */ = {isa = PBXBuildFile; fileRef = DA71484E206B9A38002A2616 /* UIFont+AdjustSize.m */; };
 		DA7569B22062036000ECD00E /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA7569B12062036000ECD00E /* MapKit.framework */; };
 		DA7569B5206234EC00ECD00E /* YFMapTestView.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7569B4206234EC00ECD00E /* YFMapTestView.m */; };
+		DA8AECBB206E252A00B18C67 /* YFDemoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA8AECBA206E252A00B18C67 /* YFDemoTableViewController.m */; };
+		DA8AECBD206E276B00B18C67 /* YFDemoTitle.plist in Resources */ = {isa = PBXBuildFile; fileRef = DA8AECBC206E276B00B18C67 /* YFDemoTitle.plist */; };
 		DA9AE0ED202AEAD40054CE8E /* UIImageView+Fileter.m in Sources */ = {isa = PBXBuildFile; fileRef = DA9AE0EC202AEAD40054CE8E /* UIImageView+Fileter.m */; };
 		DA9AE0EF202AF2450054CE8E /* icon_imgApp.png in Resources */ = {isa = PBXBuildFile; fileRef = DA9AE0EE202AF2450054CE8E /* icon_imgApp.png */; };
 		DAC4427D1F72091000F64A5D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DAC4427C1F72091000F64A5D /* AppDelegate.m */; };
@@ -31,6 +33,9 @@
 		DA7569B12062036000ECD00E /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		DA7569B3206234EC00ECD00E /* YFMapTestView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YFMapTestView.h; sourceTree = "<group>"; };
 		DA7569B4206234EC00ECD00E /* YFMapTestView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YFMapTestView.m; sourceTree = "<group>"; };
+		DA8AECB9206E252A00B18C67 /* YFDemoTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YFDemoTableViewController.h; sourceTree = "<group>"; };
+		DA8AECBA206E252A00B18C67 /* YFDemoTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YFDemoTableViewController.m; sourceTree = "<group>"; };
+		DA8AECBC206E276B00B18C67 /* YFDemoTitle.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = YFDemoTitle.plist; sourceTree = "<group>"; };
 		DA9AE0EB202AEAD40054CE8E /* UIImageView+Fileter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImageView+Fileter.h"; sourceTree = "<group>"; };
 		DA9AE0EC202AEAD40054CE8E /* UIImageView+Fileter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+Fileter.m"; sourceTree = "<group>"; };
 		DA9AE0EE202AF2450054CE8E /* icon_imgApp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_imgApp.png; path = ../../../Users/leoshi/Desktop/icon_imgApp.png; sourceTree = "<group>"; };
@@ -90,6 +95,8 @@
 				DAC4427C1F72091000F64A5D /* AppDelegate.m */,
 				DAC4427E1F72091000F64A5D /* ViewController.h */,
 				DAC4427F1F72091000F64A5D /* ViewController.m */,
+				DA8AECB9206E252A00B18C67 /* YFDemoTableViewController.h */,
+				DA8AECBA206E252A00B18C67 /* YFDemoTableViewController.m */,
 				DA6EDAB2206C85730075F207 /* YFChartView.h */,
 				DA6EDAB3206C85730075F207 /* YFChartView.m */,
 				DA7569B3206234EC00ECD00E /* YFMapTestView.h */,
@@ -102,6 +109,7 @@
 				DAC442841F72091000F64A5D /* Assets.xcassets */,
 				DAC442861F72091000F64A5D /* LaunchScreen.storyboard */,
 				DAC442891F72091000F64A5D /* Info.plist */,
+				DA8AECBC206E276B00B18C67 /* YFDemoTitle.plist */,
 				DA6EC221205A6CF400F27B0E /* IMG_1290.JPG */,
 				DA9AE0EE202AF2450054CE8E /* icon_imgApp.png */,
 				DAC4428A1F72091000F64A5D /* main.m */,
@@ -173,6 +181,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DAC442881F72091000F64A5D /* LaunchScreen.storyboard in Resources */,
+				DA8AECBD206E276B00B18C67 /* YFDemoTitle.plist in Resources */,
 				DAC442851F72091000F64A5D /* Assets.xcassets in Resources */,
 				DA9AE0EF202AF2450054CE8E /* icon_imgApp.png in Resources */,
 				DA6EC222205A6CF400F27B0E /* IMG_1290.JPG in Resources */,
@@ -188,6 +197,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DA7569B5206234EC00ECD00E /* YFMapTestView.m in Sources */,
+				DA8AECBB206E252A00B18C67 /* YFDemoTableViewController.m in Sources */,
 				DAC442801F72091000F64A5D /* ViewController.m in Sources */,
 				DAC4428B1F72091000F64A5D /* main.m in Sources */,
 				DA9AE0ED202AEAD40054CE8E /* UIImageView+Fileter.m in Sources */,

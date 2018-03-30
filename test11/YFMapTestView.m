@@ -112,7 +112,9 @@
     
     UITouch *tapTouch = [touches anyObject];
     CGPoint tapPoint = [tapTouch locationInView:_mkView];
-    
+    lastPoint = currentPoint;
+    currentPoint = tapPoint;
+//    [self addLineWithStartPoint:lastPoint withEndPoint:currentPoint];
 }
 
 - (void)drawRect:(CGRect)rect{
@@ -120,6 +122,34 @@
     CGContextRef context = UIGraphicsGetCurrentContext();
     
 }
+
+- (void)addLineWithStartPoint:(CGPoint)start withEndPoint:(CGPoint)end{
+    
+    if ((start.x == 0 && start.y == 0) ||(end.x == 0 && end.y == 0)) {
+        return;
+    }
+    
+    CAShapeLayer    *lineLayer = [CAShapeLayer layer];
+    lineLayer.lineCap = kCALineCapRound;
+    lineLayer.frame = self.bounds;
+    lineLayer.lineWidth = 1;
+    lineLayer.strokeColor = [UIColor cyanColor].CGColor;
+    lineLayer.fillColor = [UIColor clearColor].CGColor;
+    
+    UIBezierPath     *linePath = [UIBezierPath bezierPath];
+    [linePath moveToPoint:start];
+    [linePath addLineToPoint:end];
+    lineLayer.path = linePath.CGPath;
+    
+    CABasicAnimation *animate = [CABasicAnimation animationWithKeyPath:@"StrokeEnd"];
+    animate.fromValue = @(0.0);
+    animate.toValue = @(1.0);
+    animate.duration = 1.5;
+    animate.autoreverses = NO;
+    [lineLayer addAnimation:animate forKey:@"lineEnd"];
+    [self.layer addSublayer:lineLayer];
+}
+
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.

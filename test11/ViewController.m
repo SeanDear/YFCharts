@@ -30,34 +30,76 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.view.backgroundColor = [UIColor whiteColor];
     CGFloat width = [UIScreen mainScreen].bounds.size.width;
     CGFloat height = [UIScreen mainScreen].bounds.size.height;
-    YFChartView *charView = [[YFChartView alloc]initWithFrame:CGRectMake(20, 80, width-40, width-40)];
-    [self.view addSubview:charView];
+    //图表类内容
+    
+    switch (_myType) {
+        case DemoOne:
+        {
+//              系统生成二维码代码
+                oneImage = [[UIImageView alloc]initWithFrame:CGRectMake(blank, 100, width-blank*2, width-blank*2)];
+                oneImage.center = [UIApplication sharedApplication].delegate.window.center;
+                [self.view addSubview:oneImage];
+            
+                oneTextfield = [[UITextField alloc]initWithFrame:CGRectMake(blank, CGRectGetMinY(oneImage.frame)-60, width-blank*2, 50)];
+                oneTextfield.delegate = self;
+                oneTextfield.placeholder = @"请输入生成二维码的字符";
+                oneTextfield.layer.cornerRadius = 6;
+                oneTextfield.layer.masksToBounds = YES;
+                oneTextfield.font = [UIFont systemFontOfSize:17];
+                oneTextfield.layer.borderColor = [UIColor lightTextColor].CGColor;
+                oneTextfield.layer.borderWidth = 0.5;
+                oneTextfield.textAlignment = NSTextAlignmentCenter;
+                [oneTextfield addTarget:self action:@selector(textChange:) forControlEvents:UIControlEventEditingChanged];
+                [self.view addSubview:oneTextfield];
+        }
+            break;
+        case DemoTwo:
+        {
+            //    地图应用
+                yfMapView = [[YFMapTestView alloc]initWithFrame:CGRectMake(0, 64, width, width)];
+                [self.view addSubview:yfMapView];
+            
+        }
+            break;
+        case DemoThree:
+        {
+            //柱形图
+            YFChartView *charView = [[YFChartView alloc]initWithFrame:CGRectMake(20, 80, width-40, width-40)];
+            charView.chartType = pathTypeRect;
+            [self.view addSubview:charView];
+        }
+            break;
+        case DemoFour:
+        {
+            //折线图
+            YFChartView *charView = [[YFChartView alloc]initWithFrame:CGRectMake(20, 80, width-40, width-40)];
+            charView.chartType = pathTypeLine;
+            [self.view addSubview:charView];
+        }
+            break;
+        case DemoFive:
+        {
+            //饼图
+            YFChartView *charView = [[YFChartView alloc]initWithFrame:CGRectMake(20, 80, width-40, width-40)];
+            charView.chartType = pathTypeCircle;
+            [self.view addSubview:charView];
+        }
+            break;
+            
+        default:
+            break;
+    }
     
     
 //    UILabel *oneLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 80, 150, 30)];
 //    oneLabel.font = [UIFont systemFontOfSize:10];
 //    oneLabel.text = @"这是一条测试";
 //    [self.view addSubview:oneLabel];
-    return;
-//    系统生成二维码代码
-    oneImage = [[UIImageView alloc]initWithFrame:CGRectMake(blank, 100, width-blank*2, width-blank*2)];
-    oneImage.center = [UIApplication sharedApplication].delegate.window.center;
-    [self.view addSubview:oneImage];
+//    return;
 
-    oneTextfield = [[UITextField alloc]initWithFrame:CGRectMake(blank, CGRectGetMinY(oneImage.frame)-60, width-blank*2, 50)];
-    oneTextfield.delegate = self;
-    oneTextfield.placeholder = @"请输入生成二维码的字符";
-    oneTextfield.layer.cornerRadius = 6;
-    oneTextfield.layer.masksToBounds = YES;
-    oneTextfield.font = [UIFont systemFontOfSize:17];
-    oneTextfield.layer.borderColor = [UIColor lightTextColor].CGColor;
-    oneTextfield.layer.borderWidth = 0.5;
-    oneTextfield.textAlignment = NSTextAlignmentCenter;
-    [oneTextfield addTarget:self action:@selector(textChange:) forControlEvents:UIControlEventEditingChanged];
-    [self.view addSubview:oneTextfield];
 //    图片用贝塞尔曲线切圆角
 //    UIImageView *oneImage = [[UIImageView alloc]initWithFrame:CGRectMake(30, 70, 250, 250)];
 //    [oneImage setImage:[UIImage imageNamed:@"IMG_1290.JPG"]];
@@ -73,9 +115,7 @@
 //    oneLabel.textColor = [UIColor whiteColor];
 //    oneLabel.backgroundColor = [UIColor blueColor];
 //    [oneImage addSubview:oneLabel];
-//    地图应用
-//    yfMapView = [[YFMapTestView alloc]initWithFrame:CGRectMake(0, 64, width, width)];
-//    [self.view addSubview:yfMapView];
+
     
     // Do any additional setup after loading the view, typically from a nib.
 }

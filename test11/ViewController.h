@@ -8,8 +8,20 @@
 
 #import <UIKit/UIKit.h>
 
+
+typedef enum : NSUInteger {
+    DemoOne,
+    DemoTwo,
+    DemoThree,
+    DemoFour,
+    DemoFive,
+} DemoType;
+
 @interface ViewController : UIViewController
 
+
+
+@property (nonatomic, assign)       DemoType    myType;
 
 @end
 

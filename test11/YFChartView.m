@@ -87,24 +87,76 @@
     CGContextClosePath(context);
     
 }
+//画饼图
+- (void)drawCircleWithAnimate{
+    
+    NSArray *numArr = @[@"1",@"2",@"3",@"4",@"5"];
+    
+    CGPoint circlePoint = CGPointMake(width/2, height/2);
+    CGFloat radius = content_width < content_height ? content_width/2:content_height/2;
+    CGFloat start = 0.0;
+    CGFloat end = 0.0;
+    UIBezierPath *circlePath = [UIBezierPath bezierPathWithArcCenter:circlePoint radius:radius/2 startAngle:0 endAngle:2*M_PI clockwise:YES];
+    for (int i = 0; i <numArr.count; i++) {
+        CAShapeLayer *layer = [CAShapeLayer layer];
+        int num = [[numArr objectAtIndex:i] intValue];
+        end = start+num/15.0;
+        layer.strokeStart = start;
+        layer.strokeEnd = end;
+        layer.lineWidth = radius;
+        layer.strokeColor = [UIColor colorWithRed:arc4random()*59%255/255.0 green:arc4random()*139%255/255.0 blue:arc4random()*208%255/255.0 alpha:1.0].CGColor;
+        layer.fillColor = [UIColor clearColor].CGColor;
+        layer.path = circlePath.CGPath;
+        [self.layer addSublayer:layer];
+        start = end;
+        CABasicAnimation *animate = [self animationWithduration:2.0 withFrom:@(0.0) withTo:@(1.0)];
+        [layer addAnimation:animate forKey:@"circleEnd"];
+    }
+    
+    
+}
+
+//创建绘图图层
+- (CAShapeLayer *)CALayerWithStroke:(UIColor *)strokeColor withFillColor:(UIColor *)fillColor withLineWidth:(CGFloat)lineWidth{
+    
+    CAShapeLayer *Layer = [CAShapeLayer layer];
+    Layer.frame = self.bounds;
+    Layer.strokeColor = strokeColor.CGColor;
+    Layer.fillColor = fillColor.CGColor;
+    Layer.lineWidth = lineWidth;
+    Layer.lineCap = kCALineCapSquare;//kCALineCapRound 线的头部为圆
+    Layer.lineJoin = kCALineJoinMiter;
+    
+    return Layer;
+}
+//创建渐变遮罩
+- (CAGradientLayer *)CAGraientLayerWithcolors:(NSArray *)colors withLocations:(NSArray *)locations withStartPoint:(CGPoint)start withEndPoint:(CGPoint)end{
+    
+    CAGradientLayer *gradLayer = [CAGradientLayer layer];
+    gradLayer.frame = self.bounds;
+    gradLayer.colors = colors;
+    gradLayer.locations = locations;
+    gradLayer.startPoint = start;
+    gradLayer.endPoint = end;
+    return gradLayer;
+}
+//创建动画
+- (CABasicAnimation *)animationWithduration:(CGFloat)duration withFrom:(id)formValue withTo:(id)toValue{
+    
+    CABasicAnimation *animate = [CABasicAnimation animationWithKeyPath:@"strokeEnd"];
+    animate.fromValue = formValue;
+    animate.toValue = toValue;
+    animate.duration = duration;
+    animate.autoreverses = NO;
+    return animate;
+}
 
 //渐变柱形图
 - (void)drawRectWithAnimate{
     
-    CAShapeLayer *rectLayer = [CAShapeLayer layer];
-    rectLayer.frame = self.bounds;
-    rectLayer.strokeColor = [UIColor colorWithRed:222/255.0 green:79/255.0 blue:70/255.0 alpha:1.0].CGColor;
-    rectLayer.fillColor = [UIColor clearColor].CGColor;
-    rectLayer.lineWidth = content_width/10-15;
-    rectLayer.lineCap = kCALineCapSquare;//kCALineCapRound 线的头部为圆
-    rectLayer.lineJoin = kCALineJoinMiter;
+    CAShapeLayer *rectLayer = [self CALayerWithStroke:[UIColor colorWithRed:222/255.0 green:79/255.0 blue:70/255.0 alpha:1.0] withFillColor:[UIColor clearColor] withLineWidth:(content_width/10-15)];
     
-    CAGradientLayer *gradLayer = [CAGradientLayer layer];
-    gradLayer.frame = rectLayer.frame;
-    gradLayer.colors = [NSMutableArray arrayWithArray:@[(__bridge id)[UIColor colorWithRed:253 / 255.0 green:164 / 255.0 blue:8 / 255.0 alpha:1.0].CGColor, (__bridge id)[UIColor colorWithRed:251 / 255.0 green:37 / 255.0 blue:45 / 255.0 alpha:1.0].CGColor]];
-    gradLayer.locations = @[@(0.3),@(0.5)];
-    gradLayer.startPoint = CGPointMake(0, 1);
-    gradLayer.endPoint = CGPointMake(1, 0);
+    CAGradientLayer *gradLayer = [self CAGraientLayerWithcolors:[NSMutableArray arrayWithArray:@[(__bridge id)[UIColor colorWithRed:253 / 255.0 green:164 / 255.0 blue:8 / 255.0 alpha:1.0].CGColor, (__bridge id)[UIColor colorWithRed:251 / 255.0 green:37 / 255.0 blue:45 / 255.0 alpha:1.0].CGColor]] withLocations:@[@(0.3),@(0.5)] withStartPoint:CGPointMake(0, 1) withEndPoint:CGPointMake(1, 0)];
     [gradLayer setMask:rectLayer];
     [self.layer addSublayer:gradLayer];
     
@@ -119,11 +171,7 @@
     }
     rectLayer.path = rectPath.CGPath;
     
-    CABasicAnimation *animate = [CABasicAnimation animationWithKeyPath:@"strokeEnd"];
-    animate.fromValue = @(0.0);
-    animate.toValue = @(1.0);
-    animate.duration = 3.0;
-    animate.autoreverses = NO;
+    CABasicAnimation *animate = [self animationWithduration:3.0 withFrom:@(0.0) withTo:@(1.0)];
     [rectLayer addAnimation:animate forKey:@"strokeEnd"];
     
     
@@ -131,22 +179,10 @@
 //渐变折线图
 - (void)drawLineWithAnimate{
     
-    CAShapeLayer *lineLayer = [[CAShapeLayer alloc]init];
-    lineLayer.frame = self.bounds;
-    lineLayer.strokeColor = [UIColor colorWithRed:222/255.0 green:79/255.0 blue:70/255.0 alpha:1.0].CGColor;
-    lineLayer.lineCap = kCALineCapRound;
-    lineLayer.lineWidth = 2.5;
-    lineLayer.fillColor = [UIColor clearColor].CGColor;
-    lineLayer.lineJoin = kCALineJoinRound;
+    CAShapeLayer *lineLayer = [self CALayerWithStroke:[UIColor colorWithRed:222/255.0 green:79/255.0 blue:70/255.0 alpha:1.0] withFillColor:[UIColor clearColor] withLineWidth:2.5];
+    
     //渐变遮罩
-    CAGradientLayer *gradLayer = [CAGradientLayer layer];
-    gradLayer.frame = lineLayer.frame;
-    gradLayer.colors = [NSMutableArray arrayWithArray:@[(__bridge id)[UIColor colorWithRed:153 / 255.0 green:134 / 255.0 blue:8 / 255.0 alpha:1.0].CGColor, (__bridge id)[UIColor colorWithRed:51 / 255.0 green:37 / 255.0 blue:45 / 255.0 alpha:1.0].CGColor]];
-    gradLayer.locations = @[@(0.3),@(0.5)];
-    
-    gradLayer.startPoint = CGPointMake(0, 1);
-    gradLayer.endPoint = CGPointMake(1, 0);
-    
+    CAGradientLayer *gradLayer = [self CAGraientLayerWithcolors:[NSMutableArray arrayWithArray:@[(__bridge id)[UIColor colorWithRed:153 / 255.0 green:134 / 255.0 blue:8 / 255.0 alpha:1.0].CGColor, (__bridge id)[UIColor colorWithRed:51 / 255.0 green:37 / 255.0 blue:45 / 255.0 alpha:1.0].CGColor]] withLocations:@[@(0.3),@(0.5)] withStartPoint:CGPointMake(0, 1) withEndPoint:CGPointMake(1, 0)];
     [gradLayer setMask:lineLayer];
     
     [self.layer addSublayer:gradLayer];
@@ -165,11 +201,7 @@
     }
     lineLayer.path = linePath.CGPath;
     
-    CABasicAnimation *animate = [CABasicAnimation animationWithKeyPath:@"strokeEnd"];
-    animate.fromValue = @(0.0);
-    animate.toValue = @(1.0);
-    animate.duration = 5.0;
-    animate.autoreverses = NO;
+    CABasicAnimation *animate = [self animationWithduration:5.0 withFrom:@(0.0) withTo:@(1.0)];
     [lineLayer addAnimation:animate forKey:@"strokeEnd"];
     
 }
@@ -178,9 +210,31 @@
 - (void)drawRect:(CGRect)rect{
     
     [self drawBackgroundWithRect:rect];
-    [self drawDish];
-    [self drawLineWithAnimate];
-    [self drawRectWithAnimate];
+    switch (_chartType) {
+        case pathTypeLine:
+        {
+            [self drawDish];
+            [self drawLineWithAnimate];
+        }
+            break;
+        case pathTypeRect:
+        {
+            [self drawDish];
+            [self drawLineWithAnimate];
+            [self drawRectWithAnimate];
+        }
+            break;
+        case pathTypeCircle:
+        {
+            [self drawCircleWithAnimate];
+        }
+            break;
+        default:
+            break;
+    }
+    
+    
+    
    
 }
 
