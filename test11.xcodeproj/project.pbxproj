@@ -12,6 +12,10 @@
 		DA71484F206B9A38002A2616 /* UIFont+AdjustSize.m in Sources */ = {isa = PBXBuildFile; fileRef = DA71484E206B9A38002A2616 /* UIFont+AdjustSize.m */; };
 		DA7569B22062036000ECD00E /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA7569B12062036000ECD00E /* MapKit.framework */; };
 		DA7569B5206234EC00ECD00E /* YFMapTestView.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7569B4206234EC00ECD00E /* YFMapTestView.m */; };
+		DA88D6E32071C97200474A1E /* YFAnimationView.m in Sources */ = {isa = PBXBuildFile; fileRef = DA88D6E22071C97200474A1E /* YFAnimationView.m */; };
+		DA88D6E72071F42200474A1E /* AnimationTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA88D6E62071F42200474A1E /* AnimationTableViewController.m */; };
+		DA88D6EB2071FA0A00474A1E /* AnimationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DA88D6E92071FA0A00474A1E /* AnimationCell.m */; };
+		DA88D6EC2071FA0A00474A1E /* AnimationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA88D6EA2071FA0A00474A1E /* AnimationCell.xib */; };
 		DA8AECBB206E252A00B18C67 /* YFDemoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA8AECBA206E252A00B18C67 /* YFDemoTableViewController.m */; };
 		DA8AECBD206E276B00B18C67 /* YFDemoTitle.plist in Resources */ = {isa = PBXBuildFile; fileRef = DA8AECBC206E276B00B18C67 /* YFDemoTitle.plist */; };
 		DA9AE0ED202AEAD40054CE8E /* UIImageView+Fileter.m in Sources */ = {isa = PBXBuildFile; fileRef = DA9AE0EC202AEAD40054CE8E /* UIImageView+Fileter.m */; };
@@ -33,6 +37,14 @@
 		DA7569B12062036000ECD00E /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		DA7569B3206234EC00ECD00E /* YFMapTestView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YFMapTestView.h; sourceTree = "<group>"; };
 		DA7569B4206234EC00ECD00E /* YFMapTestView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YFMapTestView.m; sourceTree = "<group>"; };
+		DA88D6E12071C97200474A1E /* YFAnimationView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YFAnimationView.h; sourceTree = "<group>"; };
+		DA88D6E22071C97200474A1E /* YFAnimationView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YFAnimationView.m; sourceTree = "<group>"; };
+		DA88D6E42071D38000474A1E /* YFDemo.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YFDemo.pch; sourceTree = "<group>"; };
+		DA88D6E52071F42200474A1E /* AnimationTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnimationTableViewController.h; sourceTree = "<group>"; };
+		DA88D6E62071F42200474A1E /* AnimationTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnimationTableViewController.m; sourceTree = "<group>"; };
+		DA88D6E82071FA0A00474A1E /* AnimationCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnimationCell.h; sourceTree = "<group>"; };
+		DA88D6E92071FA0A00474A1E /* AnimationCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnimationCell.m; sourceTree = "<group>"; };
+		DA88D6EA2071FA0A00474A1E /* AnimationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AnimationCell.xib; sourceTree = "<group>"; };
 		DA8AECB9206E252A00B18C67 /* YFDemoTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YFDemoTableViewController.h; sourceTree = "<group>"; };
 		DA8AECBA206E252A00B18C67 /* YFDemoTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YFDemoTableViewController.m; sourceTree = "<group>"; };
 		DA8AECBC206E276B00B18C67 /* YFDemoTitle.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = YFDemoTitle.plist; sourceTree = "<group>"; };
@@ -95,10 +107,18 @@
 				DAC4427C1F72091000F64A5D /* AppDelegate.m */,
 				DAC4427E1F72091000F64A5D /* ViewController.h */,
 				DAC4427F1F72091000F64A5D /* ViewController.m */,
+				DA88D6E52071F42200474A1E /* AnimationTableViewController.h */,
+				DA88D6E62071F42200474A1E /* AnimationTableViewController.m */,
+				DA88D6E82071FA0A00474A1E /* AnimationCell.h */,
+				DA88D6E92071FA0A00474A1E /* AnimationCell.m */,
+				DA88D6EA2071FA0A00474A1E /* AnimationCell.xib */,
+				DA88D6E42071D38000474A1E /* YFDemo.pch */,
 				DA8AECB9206E252A00B18C67 /* YFDemoTableViewController.h */,
 				DA8AECBA206E252A00B18C67 /* YFDemoTableViewController.m */,
 				DA6EDAB2206C85730075F207 /* YFChartView.h */,
 				DA6EDAB3206C85730075F207 /* YFChartView.m */,
+				DA88D6E12071C97200474A1E /* YFAnimationView.h */,
+				DA88D6E22071C97200474A1E /* YFAnimationView.m */,
 				DA7569B3206234EC00ECD00E /* YFMapTestView.h */,
 				DA7569B4206234EC00ECD00E /* YFMapTestView.m */,
 				DA71484D206B9A38002A2616 /* UIFont+AdjustSize.h */,
@@ -181,6 +201,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DAC442881F72091000F64A5D /* LaunchScreen.storyboard in Resources */,
+				DA88D6EC2071FA0A00474A1E /* AnimationCell.xib in Resources */,
 				DA8AECBD206E276B00B18C67 /* YFDemoTitle.plist in Resources */,
 				DAC442851F72091000F64A5D /* Assets.xcassets in Resources */,
 				DA9AE0EF202AF2450054CE8E /* icon_imgApp.png in Resources */,
@@ -196,10 +217,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DA88D6E72071F42200474A1E /* AnimationTableViewController.m in Sources */,
 				DA7569B5206234EC00ECD00E /* YFMapTestView.m in Sources */,
 				DA8AECBB206E252A00B18C67 /* YFDemoTableViewController.m in Sources */,
 				DAC442801F72091000F64A5D /* ViewController.m in Sources */,
+				DA88D6E32071C97200474A1E /* YFAnimationView.m in Sources */,
 				DAC4428B1F72091000F64A5D /* main.m in Sources */,
+				DA88D6EB2071FA0A00474A1E /* AnimationCell.m in Sources */,
 				DA9AE0ED202AEAD40054CE8E /* UIImageView+Fileter.m in Sources */,
 				DA71484F206B9A38002A2616 /* UIFont+AdjustSize.m in Sources */,
 				DA6EDAB4206C85730075F207 /* YFChartView.m in Sources */,
@@ -339,6 +363,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2UJ6BHR87H;
+				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = YES;
+				GCC_PREFIX_HEADER = /project/test11/test11/YFDemo.pch;
 				INFOPLIST_FILE = test11/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.qianlong.test11;
@@ -353,6 +379,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2UJ6BHR87H;
+				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = YES;
+				GCC_PREFIX_HEADER = /project/test11/test11/YFDemo.pch;
 				INFOPLIST_FILE = test11/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.qianlong.test11;

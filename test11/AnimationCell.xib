@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="basicCell" rowHeight="150" id="KGk-i7-Jjw" customClass="AnimationCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="150"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="149.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jZ8-KB-uKD">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="20"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="cmX-Pc-uyw"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Oc3-iH-xFP" customClass="YFAnimationView">
+                        <rect key="frame" x="0.0" y="30" width="320" height="120"/>
+                        <color key="backgroundColor" red="0.32253548479999999" green="1" blue="0.53367200979999996" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="120" id="mmr-5G-3sA"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="Oc3-iH-xFP" secondAttribute="bottom" id="5jj-9X-y3a"/>
+                    <constraint firstItem="Oc3-iH-xFP" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="Nck-eE-84N"/>
+                    <constraint firstAttribute="trailing" secondItem="jZ8-KB-uKD" secondAttribute="trailing" id="dad-Vq-XqE"/>
+                    <constraint firstAttribute="trailing" secondItem="Oc3-iH-xFP" secondAttribute="trailing" id="kF3-de-KGw"/>
+                    <constraint firstItem="jZ8-KB-uKD" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="pe2-CJ-O9e"/>
+                    <constraint firstItem="jZ8-KB-uKD" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="zAL-vn-hQo"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
+            <connections>
+                <outlet property="animaView" destination="Oc3-iH-xFP" id="uFZ-KH-9gF"/>
+                <outlet property="titlelable" destination="jZ8-KB-uKD" id="CdR-PD-3ui"/>
+            </connections>
+            <point key="canvasLocation" x="34" y="107"/>
+        </tableViewCell>
+    </objects>
+</document>

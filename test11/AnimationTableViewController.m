@@ -1,34 +1,39 @@
 //
-//  YFDemoTableViewController.m
+//  AnimationTableViewController.m
 //  test11
 //
-//  Created by leoshi on 2018/3/30.
+//  Created by leoshi on 2018/4/2.
 //  Copyright © 2018年 gongzi. All rights reserved.
 //
 
-#import "YFDemoTableViewController.h"
-#import "ViewController.h"
 #import "AnimationTableViewController.h"
+#import <objc/runtime.h>
+#import "AnimationCell.h"
 
 
 
-@interface YFDemoTableViewController (){
+@interface AnimationTableViewController (){
     
-    NSArray         *dataArr;
-    
+    NSArray     *sectionTitleArr;
+    NSArray     *basicArr;
     
 }
 
 @end
 
-@implementation YFDemoTableViewController
+@implementation AnimationTableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.tableView.tableFooterView = [UIView new];
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"YFDemoTitle" ofType:@"plist"];
-    dataArr = [NSMutableArray arrayWithContentsOfFile:path];
+    unsigned int count = 0;
+    
+    objc_property_t *propertys = class_copyPropertyList([CALayer class], &count);
+    
+    sectionTitleArr = @[@"CABasicAnimation",@"CAKeyframeAnimation",@"CATransition",@"CAAnimationGroup"];
+    basicArr = @[@"position",@"bounds",@"transform",@"backgroundColor",@"opacity",@"cornerRadius"];
+    self.tableView.rowHeight = 150.0f;
+    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -43,42 +48,42 @@
 
 #pragma mark - Table view data source
 
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
+    
+    return [sectionTitleArr objectAtIndex: section];
+    
+}
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+    return sectionTitleArr.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return dataArr.count;
+    if (section == 0) {
+        return basicArr.count;
+    }
+    return 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    static NSString *cellName = @"YFDemo";
-    
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellName];
+    static NSString *cellName = @"basicCell";
+    AnimationCell *cell = [tableView dequeueReusableCellWithIdentifier:cellName];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellName];
+        cell = [[[NSBundle mainBundle] loadNibNamed:@"AnimationCell" owner:self options:nil]lastObject];
     }
-    cell.textLabel.text = [dataArr objectAtIndex:indexPath.row];
-    
+    if (indexPath.section == 0) {
+        cell.titlelable.text = [basicArr objectAtIndex:indexPath.row];
+        cell.animaBlock(indexPath.row);
+    }
+    else{
+        
+    }
     
     return cell;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    if (indexPath.row == 5) {
-        AnimationTableViewController *SubVC = [[AnimationTableViewController alloc]init];
-        [self.navigationController pushViewController:SubVC animated:YES];
-    }
-    else{
-        ViewController *SubVC = [[ViewController alloc]init];
-        SubVC.myType = indexPath.row;
-        [self.navigationController pushViewController:SubVC animated:YES];
-    }
-    
-    
-}
+
 
 /*
 // Override to support conditional editing of the table view.

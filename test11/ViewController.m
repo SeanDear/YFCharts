@@ -14,7 +14,8 @@
 #import "YFMapTestView.h"
 #import "UIFont+AdjustSize.h"
 #import "YFChartView.h"
-
+#import "YFAnimationView.h"
+//#import "YFDemo.pch"
 
 
 @interface ViewController ()<UITextFieldDelegate>{
@@ -22,6 +23,7 @@
     UIImageView         *oneImage;
     UITextField         *oneTextfield;
     YFMapTestView       *yfMapView;
+    
 }
 
 @end
@@ -31,19 +33,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
-    CGFloat width = [UIScreen mainScreen].bounds.size.width;
-    CGFloat height = [UIScreen mainScreen].bounds.size.height;
     //图表类内容
     
     switch (_myType) {
         case DemoOne:
         {
 //              系统生成二维码代码
-                oneImage = [[UIImageView alloc]initWithFrame:CGRectMake(blank, 100, width-blank*2, width-blank*2)];
+                oneImage = [[UIImageView alloc]initWithFrame:CGRectMake(blank, 100, Screen_Width-blank*2, Screen_Width-blank*2)];
                 oneImage.center = [UIApplication sharedApplication].delegate.window.center;
                 [self.view addSubview:oneImage];
             
-                oneTextfield = [[UITextField alloc]initWithFrame:CGRectMake(blank, CGRectGetMinY(oneImage.frame)-60, width-blank*2, 50)];
+                oneTextfield = [[UITextField alloc]initWithFrame:CGRectMake(blank, CGRectGetMinY(oneImage.frame)-60, Screen_Width-blank*2, 50)];
                 oneTextfield.delegate = self;
                 oneTextfield.placeholder = @"请输入生成二维码的字符";
                 oneTextfield.layer.cornerRadius = 6;
@@ -59,7 +59,7 @@
         case DemoTwo:
         {
             //    地图应用
-                yfMapView = [[YFMapTestView alloc]initWithFrame:CGRectMake(0, 64, width, width)];
+                yfMapView = [[YFMapTestView alloc]initWithFrame:CGRectMake(0, 64, Screen_Width, Screen_Width)];
                 [self.view addSubview:yfMapView];
             
         }
@@ -67,7 +67,7 @@
         case DemoThree:
         {
             //柱形图
-            YFChartView *charView = [[YFChartView alloc]initWithFrame:CGRectMake(20, 80, width-40, width-40)];
+            YFChartView *charView = [[YFChartView alloc]initWithFrame:CGRectMake(20, 80, Screen_Width-40, Screen_Width-40)];
             charView.chartType = pathTypeRect;
             [self.view addSubview:charView];
         }
@@ -75,7 +75,7 @@
         case DemoFour:
         {
             //折线图
-            YFChartView *charView = [[YFChartView alloc]initWithFrame:CGRectMake(20, 80, width-40, width-40)];
+            YFChartView *charView = [[YFChartView alloc]initWithFrame:CGRectMake(20, 80, Screen_Width-40, Screen_Width-40)];
             charView.chartType = pathTypeLine;
             [self.view addSubview:charView];
         }
@@ -83,12 +83,11 @@
         case DemoFive:
         {
             //饼图
-            YFChartView *charView = [[YFChartView alloc]initWithFrame:CGRectMake(20, 80, width-40, width-40)];
+            YFChartView *charView = [[YFChartView alloc]initWithFrame:CGRectMake(20, 80, Screen_Width-40, Screen_Width-40)];
             charView.chartType = pathTypeCircle;
             [self.view addSubview:charView];
         }
             break;
-            
         default:
             break;
     }

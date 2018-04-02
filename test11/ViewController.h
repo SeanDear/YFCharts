@@ -15,6 +15,7 @@ typedef enum : NSUInteger {
     DemoThree,
     DemoFour,
     DemoFive,
+    DemoSix,
 } DemoType;
 
 @interface ViewController : UIViewController
