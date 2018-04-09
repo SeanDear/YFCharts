@@ -97,6 +97,15 @@
     CGFloat start = 0.0;
     CGFloat end = 0.0;
     UIBezierPath *circlePath = [UIBezierPath bezierPathWithArcCenter:circlePoint radius:radius/2 startAngle:0 endAngle:2*M_PI clockwise:YES];
+    CAShapeLayer *bglayer = [CAShapeLayer layer];
+    bglayer.strokeStart = 0.0;
+    bglayer.strokeEnd = 1.0;
+    bglayer.lineWidth = radius;
+    bglayer.strokeColor = [UIColor colorWithRed:arc4random()*59%255/255.0 green:arc4random()*139%255/255.0 blue:arc4random()*208%255/255.0 alpha:1.0].CGColor;
+    bglayer.fillColor = [UIColor clearColor].CGColor;
+    bglayer.path = circlePath.CGPath;
+    bglayer.zPosition = 1;
+//    [self.layer addSublayer:bglayer];
     for (int i = 0; i <numArr.count; i++) {
         CAShapeLayer *layer = [CAShapeLayer layer];
         int num = [[numArr objectAtIndex:i] intValue];
@@ -104,16 +113,107 @@
         layer.strokeStart = start;
         layer.strokeEnd = end;
         layer.lineWidth = radius;
+        layer.zPosition = 2;
         layer.strokeColor = [UIColor colorWithRed:arc4random()*59%255/255.0 green:arc4random()*139%255/255.0 blue:arc4random()*208%255/255.0 alpha:1.0].CGColor;
         layer.fillColor = [UIColor clearColor].CGColor;
         layer.path = circlePath.CGPath;
         [self.layer addSublayer:layer];
+        CGPoint strPoint = [self pointWithAngle:(start +num/15.0/2)*M_PI*2 withRadius:radius withCenter:circlePoint withClockwise:YES];
+        UILabel *dtrLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 50, 30)];
+        dtrLabel.text = [NSString stringWithFormat:@"%.2f%%",num/15.0*100];
+        dtrLabel.center = strPoint;
+        dtrLabel.textColor = [UIColor whiteColor];
+        dtrLabel.font = [UIFont systemFontOfSize:10];
+        dtrLabel.layer.zPosition = 3;
+        //        dtrLabel.backgroundColor = [UIColor whiteColor];
+        [self addSubview:dtrLabel];
+
         start = end;
-        CABasicAnimation *animate = [self animationWithduration:2.0 withFrom:@(0.0) withTo:@(1.0)];
-        [layer addAnimation:animate forKey:@"circleEnd"];
+
     }
+    self.layer.mask = bglayer;
+    CABasicAnimation *animate = [self animationWithduration:2.0 withFrom:@(0.0) withTo:@(1.0)];
+    [bglayer addAnimation:animate forKey:@"circleEnd"];
+}
+
+- (void)drawCircleString{
+    
+    NSArray *numArr = @[@"1",@"2",@"3",@"4",@"5"];
+    CGFloat radius = content_width < content_height ? content_width/2:content_height/2;
+    CGPoint circlePoint = CGPointMake(width/2, height/2);
+    // 用于计算偏移角度对应的x,y坐标。
+    CGFloat start = 0.0;
+    CGFloat end = 0.0;
+    for (int i = 0; i <numArr.count; i++) {
+        int num = [[numArr objectAtIndex:i] intValue];
+        end = start+num/15.0;
+        
+//        [@"所占比例" drawAtPoint:strPoint withAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:10],NSForegroundColorAttributeName:[UIColor blackColor]}];
+        start = end;
+    }
+}
+
+//根据圆心坐标、半径以及角度计算偏移量坐标
+- (CGPoint )pointWithAngle:(CGFloat)angle withRadius:(CGFloat)radius withCenter:(CGPoint )center withClockwise:(BOOL)wise{
     
     
+    CGFloat r = radius/2.0;//标注的半径
+    CGFloat x = 0.0;
+    CGFloat y = 0.0;
+    if (wise) {
+        //顺时针
+        if (angle > 0 && angle < 90) {
+            //第四象限
+            x = center.x + cos(angle)*r;
+            y = center.y + sin(angle)*r;
+        }
+        else if (angle > 90 && angle < 180){
+            //第三象限
+            angle = M_PI - angle;
+            x = center.x - cos(angle)*r;
+            y = center.y + sin(angle)*r;
+        }
+        else if (angle > 180 && angle < 270){
+            //第二象限
+            angle = angle - M_PI;
+            x = center.x - cos(angle)*r;
+            y = center.y - sin(angle)*r;
+        }
+        else if (angle > 270 && angle < 360){
+            //第一象限
+            angle = M_PI*2 - angle;
+            x = center.x + cos(angle)*r;
+            y = center.y - sin(angle)*r;
+        }
+    }
+    else{
+        
+        //逆时针
+        if (angle > 0 && angle < 90) {
+            //第一象限
+            x = center.x + cos(angle)*r;
+            y = center.y - sin(angle)*r;
+        }
+        else if (angle > 90 && angle < 180){
+            //第二象限
+            angle = M_PI - angle;
+            x = center.x - cos(angle)*r;
+            y = center.y - sin(angle)*r;
+        }
+        else if (angle > 180 && angle < 270){
+            //第三象限
+            angle = angle - M_PI;
+            x = center.x - cos(angle)*r;
+            y = center.y + sin(angle)*r;
+        }
+        else if (angle > 270 && angle < 360){
+            //第四象限
+            angle = M_PI*2 - angle;
+            x = center.x + cos(angle)*r;
+            y = center.y + sin(angle)*r;
+        }
+    }
+    return CGPointMake(x, y);
 }
 
 //创建绘图图层
@@ -227,6 +327,7 @@
         case pathTypeCircle:
         {
             [self drawCircleWithAnimate];
+            [self drawCircleString];
         }
             break;
         default:

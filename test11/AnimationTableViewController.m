@@ -11,7 +11,6 @@
 #import "AnimationCell.h"
 
 
-
 @interface AnimationTableViewController (){
     
     NSArray     *sectionTitleArr;

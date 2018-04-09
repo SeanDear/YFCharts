@@ -9,13 +9,14 @@
 #import "YFDemoTableViewController.h"
 #import "ViewController.h"
 #import "AnimationTableViewController.h"
+#import <iAd/iAd.h>
 
 
 
 @interface YFDemoTableViewController (){
     
     NSArray         *dataArr;
-    
+    ADBannerView    *banner;
     
 }
 
